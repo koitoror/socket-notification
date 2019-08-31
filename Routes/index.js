@@ -9,7 +9,7 @@ module.exports = function(router,mysql,pool) {
     	pool.getConnection(function(err,connection){
     		if (err) {
     			connection.release();
-    			return res.json({"error" : true,"message" : "Error in database."});
+    			return res.json({"error" : true,"message" : "Error4 in database."});
     		} else {
     			var sqlQuery = "SELECT * FROM ??";
     			var inserts = ["UserPost"];
@@ -17,14 +17,14 @@ module.exports = function(router,mysql,pool) {
     			connection.query(sqlQuery,function(err,rows){
     				connection.release();
     				if (err) {
-    					return res.json({"error" : true,"message" : "Error in database."});
+    					return res.json({"error" : true,"message" : "Error5 in database."});
     				} else {
     					res.json({"error" : false,"message" : rows});
     				}
     			});
     		}
     		connection.on('error', function(err) {
-    			return res.json({"error" : true,"message" : "Error in database."});
+    			return res.json({"error" : true,"message" : "Error6 in database."});
             });
     	});
     });

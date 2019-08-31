@@ -12,7 +12,7 @@ var pool    =    mysql.createPool({
       connectionLimit   :   100,
       host              :   'localhost',
       user              :   'root',
-      password          :   '',
+      password          :   'password',
       database          :   'socketDemo',
       debug             :   false
 });
@@ -24,7 +24,7 @@ router.get('/',function(req,res){
 router.get('/getStatus',function(req,res){
 	pool.getConnection(function(err,connection){
 		if(err) {
-			return res.json({"error" : true,"message" : "Error in database."});
+			return res.json({"error" : true,"message" : "Error1 in database."});
 		} else {
 			var sqlQuery = "SELECT * FROM ??";
 			var inserts = ["UserPost"];
@@ -32,14 +32,14 @@ router.get('/getStatus',function(req,res){
 			connection.query(sqlQuery,function(err,rows){
 				connection.release();
 				if(err) {
-					return res.json({"error" : true,"message" : "Error in database."});
+					return res.json({"error" : true,"message" : "Error2 in database."});
 				} else {
 					res.json({"error" : false,"message" : rows});
 				}
 			});
 		}
 		connection.on('error', function(err) {
-			return res.json({"error" : true,"message" : "Error in database."});
+			return res.json({"error" : true,"message" : "Error3 in database."});
         });
 	});
 });

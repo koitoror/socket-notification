@@ -12,7 +12,7 @@ var pool    =    mysql.createPool({
       connectionLimit   :   100,
       host              :   'localhost',
       user              :   'root',
-      password          :   '',
+      password          :   'password',
       database          :   'socketDemo',
       debug             :   false
 });
@@ -34,7 +34,9 @@ io.on('connection',function(socket){
 			if (error) {
 				io.emit('error');
 			} else {
-                socket.broadcast.emit("notify everyone",{user : data.user,comment : data.comment});
+				// socket.broadcast.emit("notify everyone",{user : data.user,comment : data.comment});
+				socket.emit("notify everyone",{user : data.user,comment : data.comment});
+
 			}
 		});
 	});
